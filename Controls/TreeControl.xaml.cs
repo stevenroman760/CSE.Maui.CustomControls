@@ -1,6 +1,6 @@
 namespace CSE.Maui.CustomControls.Controls;
 
-public partial class TreeControl : ContentPage
+public partial class TreeControl : ContentView
 {
 	public TreeControl()
 	{
