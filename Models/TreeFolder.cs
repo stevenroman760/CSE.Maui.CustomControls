@@ -1,12 +1,11 @@
-﻿namespace CSE.Maui.CustomControls.Models
-{
-    [Serializable]
-    public class TreeItem
-    {
-        public string ItemName { get; set; }
-        public int Id { get; set; }
-    }
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace CSE.Maui.CustomControls.Models
+{
     [Serializable]
     public class TreeFolder
     {
