@@ -160,7 +160,7 @@ namespace CSE.Maui.CustomControls.Controls
                 VerticalOptions = LayoutOptions.Center,
                 TextColor = Colors.Black
             };
-            label.SetBinding(Label.TextProperty, "Key");
+            label.SetBinding(Label.TextProperty, "ItemName");
 
             var xamlItemTreeViewNode = CreateTreeViewNode(xamlItem, label, true);
             children.Add(xamlItemTreeViewNode);
@@ -177,7 +177,7 @@ namespace CSE.Maui.CustomControls.Controls
                     VerticalOptions = LayoutOptions.Center,
                     TextColor = Colors.Black
                 };
-                label.SetBinding(Label.TextProperty, "Name");
+                label.SetBinding(Label.TextProperty, "FolderName");
 
                 var groupTreeViewNode = CreateTreeViewNode(xamlItemGroup, label, false);
 

@@ -4,15 +4,11 @@ using CSE.Maui.CustomControls.Consumer.Services;
 namespace CSE.Maui.CustomControls.Consumer.Views;
 
 
-public partial class TreeControl : ContentView
+public partial class TreeControl : ContentPage
 {
-    DataService service;
-    CompanyTreeViewBuilder companyTreeViewBuilder;
+    public required DataService service;
+    public required CompanyTreeViewBuilder companyTreeViewBuilder;
 
-    public TreeControl()
-    { 
-    
-    }
 
     public TreeControl(DataService service, CompanyTreeViewBuilder companyTreeViewBuilder)
     {
@@ -25,8 +21,8 @@ public partial class TreeControl : ContentView
 
     private void ProcessTreeView()
     {
-        //var xamlItemGroups = companyTreeViewBuilder.GroupData(service);
-        //var rootNodes = TheTreeView.ProcessXamlItemGroups(xamlItemGroups);
-        //TheTreeView.RootNodes = rootNodes;
+        var xamlItemGroups = companyTreeViewBuilder.GroupData(service);
+        var rootNodes = TheTreeView.ProcessXamlItemGroups(xamlItemGroups);
+        TheTreeView.RootNodes = rootNodes;
     }
 }
