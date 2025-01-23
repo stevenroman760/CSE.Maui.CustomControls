@@ -23,13 +23,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Consumer\Views\TreeControl.xaml.cs">
-	    <DependentUpon>TreeControl.xaml</DependentUpon>
+	  <Compile Update="Consumer\Views\TreeControlContainer.xaml.cs">
+	    <DependentUpon>TreeControlContainer.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Consumer\Views\TreeControl.xaml">
+	  <MauiXaml Update="Consumer\Views\TreeContainer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Consumer\Views\TreeControlContainer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
