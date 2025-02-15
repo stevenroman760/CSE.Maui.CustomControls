@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CSE.Maui.CustomControls.Consumer.Views.TreeContainer"
              xmlns:controls="clr-namespace:CSE.Maui.CustomControls.Controls">
-    <StackLayout>
+    <ScrollView>
         <Label Text="Creative Systems Engineers Custom Controls!"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" /> 
@@ -11,5 +11,5 @@
         <controls:TreeView BackgroundColor="White"
                 Margin="4"
                 x:Name="TheTreeView"/>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

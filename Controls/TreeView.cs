@@ -71,6 +71,25 @@ namespace CSE.Maui.CustomControls.Controls
         public TreeView()
         {
             Content = _StackLayout;
+
+            var dropGesture = new DropGestureRecognizer();
+            dropGesture.Drop += OnTreeDropped;
+            GestureRecognizers.Add(dropGesture);
+        }
+
+        private void OnTreeDropped(object sender, DropEventArgs e)
+        {
+            if (e.Data.Properties.ContainsKey("DraggedNode"))
+            {
+                var draggedNode = e.Data.Properties["DraggedNode"] as TreeViewNode;
+
+                if (draggedNode != null)
+                {
+                    draggedNode.ParentTreeViewItem?.ChildrenList.Remove(draggedNode);
+                    RootNodes.Add(draggedNode);
+                    draggedNode.ParentTreeViewItem = null;
+                }
+            }
         }
 
         private void RemoveSelectionRecursive(IEnumerable<TreeViewNode> nodes)
@@ -87,12 +106,13 @@ namespace CSE.Maui.CustomControls.Controls
         }
 
         private static void AddItems(IEnumerable<TreeViewNode> childTreeViewItems, StackLayout parent, TreeViewNode parentTreeViewItem)
-        {
+        {            
             foreach (var childTreeNode in childTreeViewItems)
             {
                 if (!parent.Children.Contains(childTreeNode))
                 {
-                    parent.Children.Add(childTreeNode);
+                    if (childTreeViewItems.Count() > 0)
+                        parent.Children.Add(childTreeNode);
                 }
 
                 childTreeNode.ParentTreeViewItem = parentTreeViewItem;

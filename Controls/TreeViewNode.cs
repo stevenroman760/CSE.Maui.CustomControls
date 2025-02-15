@@ -61,10 +61,36 @@ namespace CSE.Maui.CustomControls.Controls
 
         public event EventHandler Expanded;
 
+
+
+
         /// <summary>
         /// Occurs when the user double clicks on the node
         /// </summary>
         public event EventHandler DoubleClicked;
+
+        private void OnNodeDropped(object sender, DropEventArgs e)
+        {
+            if (e.Data.Properties.ContainsKey("DraggedNode"))
+            {
+                var draggedNode = e.Data.Properties["DraggedNode"] as TreeViewNode;
+
+                if (draggedNode != null)
+                {
+                    draggedNode.ParentTreeViewItem?.ChildrenList.Remove(draggedNode);
+                    this.ChildrenList.Add(draggedNode);
+                    draggedNode.ParentTreeViewItem = this;
+                }
+            }
+        }
+
+
+
+        private void OnDragStarting(object sender, DragStartingEventArgs e)
+        {
+            e.Data.Properties.Add("DraggedNode", this);
+            e.Handled = true;
+        }
 
         protected override void OnParentSet()
         {
@@ -175,6 +201,17 @@ namespace CSE.Maui.CustomControls.Controls
         /// </summary>
         public TreeViewNode()
         {
+            var dragGesture = new DragGestureRecognizer
+            {
+                CanDrag = true
+            };
+            dragGesture.DragStarting += OnDragStarting;
+            GestureRecognizers.Add(dragGesture);
+
+            var dropGesture = new DropGestureRecognizer();
+            dropGesture.Drop += OnNodeDropped;
+            GestureRecognizers.Add(dropGesture);
+
             var itemsSource = (ObservableCollection<TreeViewNode>)_Children;
             itemsSource.CollectionChanged += ItemsSource_CollectionChanged;
 
