@@ -111,8 +111,7 @@ namespace CSE.Maui.CustomControls.Controls
             {
                 if (!parent.Children.Contains(childTreeNode))
                 {
-                    if (childTreeViewItems.Count() > 0)
-                        parent.Children.Add(childTreeNode);
+                    parent.Children.Add(childTreeNode);
                 }
 
                 childTreeNode.ParentTreeViewItem = parentTreeViewItem;
